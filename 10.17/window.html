@@ -7,10 +7,13 @@
   <title>Document</title>
 </head>
 <body>
-<input type="button" name="name" value="跳转">
-<a href="#123">123</a>
+  <h2>第二页</h2>
+  <input type="button" name="name" value="前一页">
+  <input type="button" name="name" value="后一页">
+
   <script src="js/jquery-1.10.1.min.js"></script>
   <script type="text/javascript">
+
     // $(":button").click(function(){
     //   if (confirm("是否删除")) {
     //     console.log("删除成功");
@@ -27,22 +30,25 @@
     //   }
     // })
 // console.log(location.hash);
-function currLocation()
-{
-alert(window.location)
-}
-function newLocation()
-{
-window.location="baidu.com"
-}
-console.log(location.url);//返回url #后面的
-console.log(location.host);//返回完整的url 路径
-console.log(location.herf);//	设置或返回完整的 URL
-console.log(location.hash);//设置或返回从井号 (#) 开始的 URL（锚）
-console.log(location.port);//设置或返回当前 URL 的端口号。
-$(":button").click(function () {
-  location.assign("http://baidu.com")//	加载新的文档。
-
+// function currLocation()
+// {
+// alert(window.location)
+// }
+// function newLocation()
+// {
+// window.location="baidu.com"
+// }
+// console.log(location.url);//返回url #后面的
+// console.log(location.host);//返回完整的url 路径
+// console.log(location.herf);//	设置或返回完整的 URL
+// console.log(location.hash);//设置或返回从井号 (#) 开始的 URL（锚）
+// console.log(location.port);//设置或返回当前 URL 的端口号。
+// $(":button").click(function () {
+//   location.assign("http://baidu.com")//	加载新的文档。
+//
+// })
+$("input:first").click(function(){
+  
 })
    </script>
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .box{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: pink;
+  }
+  #txt{
+    width: 200px;
+    height: 30px;
+    margin: 10px 20px;
+  }
+  .btn{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+  }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input type="text" id="txt"><br>
+    <input type="button" class="btn num" value="1">
+    <input type="button" class="btn num" value="2">
+    <input type="button" class="btn num" value="3">
+    <input type="button" class="btn sign" value="+">
+
+    <br>
+    <input type="button" class="btn num" value="4">
+    <input type="button" class="btn num" value="5">
+
+    <input type="button" class="btn num" value="6">
+    <input type="button" class="btn sign" value="-">
+
+    <br>
+    <input type="button" class="btn num" value="7">
+    <input type="button" class="btn num" value="8">
+    <input type="button" class="btn num" value="9">
+    <input type="button" class="btn sign" value="*">
+
+    <br>
+    <input type="button" class="btn num" value="0">
+    <input type="button" class="btn clear" value="c">
+    <input type="button" class="btn result" value="=">
+    <input type="button" class="btn sign" value="/"><br>
+
+
+  </div>
+  <script src="js/jquery-1.10.1.min.js"></script>
+  <script>
+    var   num1 = "";
+    var   num2 = "";
+    var   sign = "";
+    var   res = 0;
+
+    $(".num").click(function (){
+        var num = this.value;
+          //判断是第一个数还是第二个数
+        if (sign=="") {
+            num1 = num1 + num;
+            $("#txt").value = num1;
+          }else {
+            num2 = num2 + num;
+            $("#txt").value = num2;
+          }
+        }
+      })
+
+    function count() {
+      switch (sign) {
+        case "+":result = Number(num1) + Number(num2);break;
+        case "-":result = Number(num1) - Number(num2);break;
+        case "*":result = Number(num1) * Number(num2);break;
+        case "/":result = Number(num1) / Number(num2);break;
+      }
+      num1 = res;
+      num2 = "";
+      $("#txt").value = res;
+    }
+  $(".sign input").click(function () {
+    if (num2) {
+        $("#txt").val(count())
+
+    }
+  })
+    $(".result").click(function () {
+        $("#txt").val(count())
+    })
+    $(".clear").click(function () {
+      num1 = "";
+      num2 = "";
+      sign = "";
+      $("#txt").value = "";
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul li{
+      list-style: none;
+      width: 100px;
+      height: 30px;
+      float: left;
+    }
+    ul li a{
+      display: block;
+      border: 1px solid #ccc;
+      color:#000;
+      text-align: center;
+      line-height: 30px;
+    }
+  </style>
+</head>
+<body>
+    <ul>
+    <li><a herf="1.jpg">1</a></li>
+    <li><a herf="2.jpg">2</a></li>
+    <li><a herf="3.jpg">3</a></li>
+    <li><a herf="4.jpg">4</a></li>
+  </ul>
+  <div class="imgbox">
+      <img alt="" src="img/1.jpg" id="pic" />
+ </div>
+      <script src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+    var oA = document.getElementsByTagName('a');
+    var b = document.getElementById('pic');
+    // console.log(a[0]);
+    // console.log(b[0]);
+
+  // for (var i = 0; i < a.length; i++) {
+  //   a[i].onmouseenter() = function () {
+  //
+  //     b[i].setAttribute("src","img/i.jpg");
+  //      //获取属性
+  //
+  //   }
+  // }
+  oA[0].onmouseenter() = function () {
+      // var herf = a[0].getAttribute("herf")
+      b.setAttribute("src","img/１.jpg");
+    }   //获取属性
+    // a.onmouseenter() = function () {
+    //
+    //     b.setAttribute("src","img/2.jpg");
+    //   }   //获取属性
+    //   a.onmouseenter() = function () {
+    //
+    //       b.setAttribute("src","img/3.jpg");
+    //     }   //获取属性
+    //     a.onmouseenter() = function () {
+    //
+    //         b.setAttribute("src","img/4.jpg");
+    //       }   //获取属性
+    </script>
+</body>
+</html>

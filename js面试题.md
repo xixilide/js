@@ -51,3 +51,303 @@ MochiKit自称为一个轻量级的js框架。MochiKit 主要受到 Python 和 P
 ```
 border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
 ```
+### 5.编程题：实现随机选取10–100之间的10个数字，存入一个数组，并排序。
+```js
+var arr=[];
+for(var i=0;i<10;i++){
+  arr.push((Math.floor(Math.random()*10)+1)*10);
+}
+function compare(value1,value2){
+   if(value1<value2){
+     return -1;
+   }else if(value1>value2){
+      return 1;
+   }else{
+     return 0;
+   }
+}
+console.log(arr.sort(compare));
+```
+### 如何获得大于0小于9的随机数
+```js
+function randomMath() {
+return Math.floor(Math.random()*10);//0-9
+}
+```
+### 编写程序实现多态  (关于java的题)
+
+多态：对于多态的实现，有三个关键字new，virtual，override的使用，多态可以简 单的理解为对不同的对象调用相同的方法，表现出不同的行为，这种特性是通过继承来实现的。
+
+例1
+：
+```
+public class Animal      {  
+          public virtual void Eat()          {   
+                        Console.WriteLine("Animal eat");     
+                             }      }   
+          public class Cat : Animal      {   
+               public override void Eat()          {           
+                  Console.WriteLine("Cat eat");        
+                    }      }    
+           public class Dog : Animal      {       
+                public override void Eat()          {   
+                    Console.WriteLine("Dog eat");       
+                       }      }    
+    class Tester      {        
+        static void Main(string[] args)       
+           {   
+             Animal[] animals = new Animal[3];     
+             animals[0] = new Animal();       
+             animals[1] = new Cat();           
+             animals[2] = new Dog();           
+             for (int i = 0; i < 3; i++)         
+             {                   
+               animals[i].Eat();     
+                  }  
+                }   
+   }  
+```
+ 输出如下：  Animal eat... Cat eat... Dog eat...  
+
+在上面的例子中，通过继承，使得Animal对象数组中的不同的对象，在调用Eat()方法时，表现出了不同的行为。  
+
+
+### 1.js中有哪些数据类型，并解释清楚原始数据类型和引用数据类型
+
+js中共有null,undefined, string,number,boolean,object六种数据类型。
+
+原始数据类型: null,undefined, string,number,boolean
+
+引用数据类型:object
+
+两者的区别：
+1）值存储方式不同：
+原始数据类型：将变量名和值都存储在栈内存中
+引用数据类型：将变量名存储在栈内存中，将值存储在堆内存中，并在栈内存中存储值的地址，该地址指向堆内存中的值。
+
+2）赋值方式不同：
+
+当给b赋予另一个a的值
+若a值为原始数据类型，直接在栈内存中生成b值，两个变量以后进行值改变不会相互影响
+
+若a值为引用数据类型，赋予b变量的是值地址，通过这个地址，两者指向的其实是堆内存中的同一个值，所以以后a,b任一变量对值进行改变，会直接影响另一个变量的值
+
+### 2. 解释清楚 null 和 undefined
+
+null表示一个标识被赋值了，且该标识赋值为“空值”,从逻辑角度来看，null值表示空对象指针；
+
+undefined表示声明了标识，但没有给标识赋值。
+### 3. 如何复制一个对象的值？
+
+```js
+function cloneObject(object){
+   var newObject = new Object();
+
+
+   for(var i in object){
+      newObject[i] = object[i];
+    }
+    return newObject;
+ }
+```
+
+### 4. js在什么时候会进行隐式类型转换，转换的结果？
+
+ 数值运算
+ if
+ .调用方法或属性
+ !和!!
+
+### 5. 类型识别的方法？
+typeof a
+
+可以判别标准类型，除了null之外
+
+typeof 1 返回结果："number"typeof {} 返回结果:"object"
+
+不能判别具体的对象类型，除了function之外
+
+typeof [1] 返回结果:"object"typeof function(){} 返回结果:"function"
+
+a instanceof b
+
+可以判别内置对象类型
+
+[] instanceof Array 返回结果：true new String() instanceof String返回结果：true
+
+不能判别原始类型值
+
+'a' instanceof String 返回结果：false
+
+可以判别自定义对象类型
+```js
+ function Point(x,y){
+    this.x = x;
+     this.y = y
+     } var c = new Point(1,2)
+      c instanceof Point
+```
+      返回结果：true
+
+      a.constructor
+      可以判别标准数据类型（undefined和null除外）
+
+      '123'.constructor == String 返回结果：true
+
+      可以判别具体的内置对象类型
+      [1,2].constructor == Array返回结果：true
+
+      可以判别自定义对象类型
+
+```js
+       function Point(x,y){
+          this.x = x;
+           this.y = y
+           }
+            var c = new Point(1,2)
+            c.constructor == Point
+```
+
+            返回结果：true
+
+            Object.prototype.toString.call(a)
+            可以判别标准数据类型
+
+            Object.prototype.toString.call(1)返回结果:"[object Number]" Object.prototype.toString.call(undefined) 返回结果:"[object Undefined]"
+            可以判别内置对象类型
+            Object.prototype.toString.call([a]) 返回结果:"[object Array]"
+
+            不能判别自定义对象类型
+            ```js
+            function Point(x,y){
+              this.x = x;
+              this.y = y
+            }
+            var c = new Point(1,2)
+            Object.prototype.toString.call(c)
+            ```
+            返回结果:"[object Object]"
+
+            工作中可以写一个函数方便判定
+            function type(obj){<br>return Object.prototype.toString.call(obj).slice(8,-1)
+              }
+              type('a') 返回结果: "String" type([a])返回结果: "Array"
+              函数
+
+#### 1. 函数里的this什么含义，什么情况下，怎么用?
+
+              谁调用的方法或者属性，this就指向谁
+
+              如果没有被谁调用，this指向window
+
+
+#### 2. bind,call,apply方法的使用，什么区别,  什么时候用?
+
+#### 3. 函数curry化
+
+    函数curry化是什么意思？
+              把接受多个参数的函数转换为接受单一参数的函数，且函数可以持续接收参数
+
+              将一个复杂的问题片段化，使之进行简化
+#### 3. 数组和对象有哪些原生方法，列举一下，分别是什么含义，比如链接两个数组用哪个方法，删除数组的指定项。
+原型
+### 1. 讲一下 prototype 是什么东西，原型链的理解，什么时候用 prototype?
+proto
+构造函数
+
+闭包
+1.什么是闭包？
+2.闭包的作用和使用场景
+
+闭包的作用一：隐藏、封装
+
+闭包的作用二：记忆函数
+
+### 变量作用域
+ajax
+
+1. 讲解原生Js实现ajax的原理。
+
+　　Ajax 的全称是Asynchronous JavaScript and XML，其中，Asynchronous 是异步的意思，它有别于传统web开发中采用的同步的方式。
+
+　　Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。
+
+　　XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。
+
+　　XMLHttpRequest这个对象的属性有：
+
+onreadystatechange每次状态改变所触发事件的事件处理程序。
+
+ responseText从服务器进程返回数据的字符串形式。
+
+  responseXML从服务器进程返回的DOM兼容的文档数据对象。
+
+   status从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）
+
+    status Text伴随状态码的字符串信息
+
+     readyState对象状态值
+
+      0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）
+
+       1 (初始化) 对象已建立，尚未调用send方法
+
+       2 (发送数据) send方法已调用，但是当前的状态及http头未知
+
+       3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，
+
+       4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据
+
+### 实现加法代码如下：
+
+```js
+       add(2, 5); // 7
+
+       add(2)(5); // 7
+
+       function addto(){
+
+         var length = arguments.length;
+         var sum = 0;
+         for(var i = 0;i&lt;length;i++){
+           sum += arguments[i]
+         }
+         return sum;
+       }
+       function add(){
+         var value = addto.apply(add,arguments);
+         var helper = function(next){
+           typeof next == "number" ? value+=next:value;
+           return helper
+         }
+         helper.valueOf = function(){
+           return value;
+         }
+         return helper;
+       }
+  ```
+#### 如何使用javascript 方法duplicate，使（[1,2,3,4,5]）返回结果为[1,2,3,4,5,1,2,3,4,5]
+
+
+```js
+  duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
+
+  function duplicate(arr){
+    var length = arr.length;
+       for(var i=0;i<length;i++)
+      arr.push(arr[i])
+         return arr;
+            }
+  ```
+
+
+#### 4.想要去除一个字符串的第一个字符，有哪些方法可以实现.
+```js
+ str.slice(1)
+str.substr(1)
+str.substring(1)
+str.replace(/./,'')
+str.replace(str.charAt(0),'')
+```
+
+### 5.对一个数组（每项都是数值）求和，有哪些方法？

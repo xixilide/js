@@ -351,3 +351,145 @@ str.replace(str.charAt(0),'')
 ```
 
 ### 5.对一个数组（每项都是数值）求和，有哪些方法？
+
+### JS中的call、apply、bind方法
+
+一、call()和apply()方法
+
+1.方法定义
+
+call方法:
+
+语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])
+
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+
+说明：
+
+call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。
+
+如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。
+
+apply方法：
+
+语法：apply([thisObj[,argArray]])
+
+定义：应用某一对象的一个方法，用另一个对象替换当前对象。
+
+说明：
+
+如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。
+
+如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
+
+c、实现继承
+
+function Animal(name){	  
+	this.name = name;	  
+	this.showName = function(){	  
+		alert(this.name);	  
+	}	  
+}	  
+function Cat(name){
+	Animal.call(this, name);
+}	  
+var cat = new Cat("Black Cat");	 
+cat.showName();
+Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了.
+
+二、bind
+
+在EcmaScript5中扩展了叫bind的方法（IE6,7,8不支持），使用方法如下
+```js
+function T(c) {
+	this.id = "Object";
+	this.dom = document.getElementById("scroll");
+}
+T.prototype = {
+	init: function() {
+	   //①
+		this.dom.onmouseover = function() {
+			console.log("Over-->"+this.id);
+		}
+	   //②
+		this.dom.onmouseout = function() {
+			console.log("Out -->"+this.id);
+		} .bind(this)
+	}
+};
+(new T()).init();
+```
+结果：
+
+通过①和②的对照加上显示的结果就会看出bind的作用：改变了上下文的this
+
+bind与call很相似,，例如，可接受的参数都分为两部分，且第一个参数都是作为执行时函数上下文中的this的对象。
+
+不同点有两个：
+
+①bind的返回值是函数
+
+//都是将obj作为上下文的this
+```js
+function func(name,id) {
+    console.log(name,id,this);
+}
+var obj = "Look here";
+//什么也不加func("    ","-->");
+
+//使用bind是 返回改变上下文this后的函数
+
+var a = func.bind(obj, "bind", "-->");
+
+a();
+
+//使用call是 改变上下文this并执行函数
+
+var b = func.call(obj, "call", "-->");
+```
+结果：
+
+
+②后面的参数的使用也有区别
+```js
+function f(a,b,c){
+    console.log(a,b,c);
+}
+
+var f_Extend = f.bind(null,"extend_A")
+f("A","B","C")  //这里会输出--> A B C
+
+f_Extend("A","B","C")  //这里会输出--> extend_A A B
+
+f_Extend("B","C")  //这里会输出--> extend_A B C
+
+f.call(null,"extend_A") //这里会输出--> extend_A undefined undefined
+```
+call 是 把第二个及以后的参数作为f方法的实参传进去
+
+而bind 虽说也是获取第二个及以后的参数用于之后方法的执行，但是f_Extend中传入的实参则是在bind中传入参数的基础上往后排的。
+
+//这句代码相当于以下的操作
+```js
+var f_Extend = f.bind(null,"extend_A")
+
+//↓↓↓
+
+var f_Extend = function(b,c){
+    return f.call(null,"extend_A",b,c);
+}
+```
+举一个应用场景：例如现在有一个方法 根据不同的文件类型进行相应的处理，通过bind 就可以创建出简化版的处理方法
+```js
+function FileDealFunc(type,url,callback){
+	if(type=="txt"){...}
+	else if(type=="xml"){...}
+	.....
+}
+var TxtDealFunc = FileDealFunc.bind(this,"txt");
+//这样使用的时候更方便一些
+
+FileDealFunc("txt",XXURL,func);  //原来
+
+TxtDealFunc(XXURL,func); //现在
+```

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    #box1{
+   width: 500px;height: 500px;background: teal;
+    }
+    #box2{
+      width: 300px;height: 300px;background: pink;
+    }
+    #box3{width: 100px;height: 100px;background: #ccc;}
+  </style>
+</head>
+<body>
+  <div id="box1">
+
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  box1 = document.getElementById('box1');
+  box2 = document.getElementById('box2');
+  box3 = document.getElementById('box3');
+
+  box1.addEventListener('click',my1,false)
+  box2.addEventListener('click',my2,false)
+  box3.addEventListener('click',my3,false)
+  function my1(e) {
+    alert('1')
+    // e.stopPropagation()//阻止事件的冒泡
+  }
+  function my2(e) {
+    alert('2')
+    // e.stopPropagation()
+
+  }
+  function my3(e) {
+    alert('3')
+    // e.stopPropagation()
+
+  }
+  </script>
+</body>
+</html>

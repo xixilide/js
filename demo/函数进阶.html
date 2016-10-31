@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    //匿名函数
+    // (function(){
+    //   console.log('a');
+    // })
+
+    //#实现多个参数的相加的面试题
+    //arguments 参数的集合 传多个参数
+    function sum() {
+        var res = 0;
+        var re = 0
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof (arguments[i])== 'number'||typeof(arguments[i]) == 'boolean') {
+          var y = String(arguments[i]).indexOf(".")+1;//获取小数点的位置
+          if (y==0) {
+            //整数
+            res = Number(arguments[i])+res
+          }else {
+            //小数
+            var count = String(arguments[i]).length - y;//获取小数点后的个数
+            // console.log(count);
+            var  re= Number(arguments[i])+re
+              res = re.toPrecision(count)
+    }
+
+        }
+      }
+      return res
+    }
+
+
+    //面试题
+      // console.log(String(1).indexOf(".")+1);//0
+      console.log(sum(1,2,3,4,5) );//15
+      console.log(sum(5,null,-5)) //0
+      console.log(sum('1.0',1,true,1,false,1,'A',1,'B',1,'C',1,'D',1,'E',1,'F',1)) //10
+      console.log(sum(0.1,0.2)) //0.3
+      // console.log((0.1 + 0.2).toPrecision(1) );
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <a href="window.html" id="btn" class="a">123</a>
+    <a  href="http://baidu.com" id="Btn1" class="b">1</a>
+    <script src="js/jquery-1.10.1.min.js"></script>
+
+    <script type="text/javascript">
+      var jqA = $("#btn");
+        console.log(jqA);
+      var oA = document.getElementById('btn')
+      var oA1 = document.getElementsByTagName('a');//可以获取多个，存入数组中了
+        // console.log(oA);
+        // console.log(oA1);
+        oA1[1].onmouseenter = function () {
+          this.setAttribute("herf","document.html")//设置属性
+          var herf = oA1[0].getAttribute("herf") //获取属性
+        }
+      // var oA2 = document.getElementsByClassName('a')
+      // var oA3 = document.getElementsByClassName('b'); //有兼容问题
+      //   console.log(oA2);
+      //   console.log(oA3);
+    </script>
+</body>
+</html>

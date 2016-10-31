@@ -6,7 +6,11 @@
 说明：至于如何对比，就是每次从原数组中取出一个元素，然后到对象中去访问这个属性，如果能访问到值，则说明重复。
 复制代码 代码如下:
 ```js
+<<<<<<< HEAD
 　　 = function(){
+=======
+Array.prototype.unique3 = function(){
+>>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
  var res = [];
  var json = {};
  for(var i = 0; i < this.length; i++){
@@ -51,6 +55,7 @@ MochiKit自称为一个轻量级的js框架。MochiKit 主要受到 Python 和 P
 ```
 border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
 ```
+<<<<<<< HEAD
 
 ### 题目4：结果是什么？
 ```js
@@ -116,6 +121,8 @@ exampleFunc(); // global, false
 
 因为函数体需要 this 值获取 x 属性的值，那么接下来我们考虑改函数时调用时的上下文作用域以及背后的具体流程。
 =======
+=======
+>>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
 ### 5.编程题：实现随机选取10–100之间的10个数字，存入一个数组，并排序。
 ```js
 var arr=[];
@@ -558,4 +565,7 @@ FileDealFunc("txt",XXURL,func);  //原来
 
 TxtDealFunc(XXURL,func); //现在
 ```
+<<<<<<< HEAD
+>>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
+=======
 >>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4

@@ -1,4 +1,5 @@
 # window对象
+<<<<<<< HEAD
 
 //BOM 浏览器对象模型
 
@@ -7,6 +8,9 @@ BOM是browser object model的缩写，简称浏览器对象模型
 BOM提供了独立于内容而与浏览器窗口进行交互的对象
 
 ![](http://www.dreamdu.com/images/browser_objects.png)
+=======
+//BOM 浏览器对象模型
+>>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
 ```js
 var a = 10;
 console.log(window.a);

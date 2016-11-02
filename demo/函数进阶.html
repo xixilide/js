@@ -7,44 +7,105 @@
   <title>Document</title>
 </head>
 <body>
+  <button type="button" name="button" id="btn">抽奖</button>
   <script type="text/javascript">
-    //匿名函数
+//匿名函数
     // (function(){
     //   console.log('a');
     // })
 
-    //#实现多个参数的相加的面试题
+//#实现多个参数的相加的面试题
     //arguments 参数的集合 传多个参数
-    function sum() {
-        var res = 0;
-        var re = 0
-      for (var i = 0; i < arguments.length; i++) {
-        if (typeof (arguments[i])== 'number'||typeof(arguments[i]) == 'boolean') {
-          var y = String(arguments[i]).indexOf(".")+1;//获取小数点的位置
-          if (y==0) {
-            //整数
-            res = Number(arguments[i])+res
-          }else {
-            //小数
-            var count = String(arguments[i]).length - y;//获取小数点后的个数
-            // console.log(count);
-            var  re= Number(arguments[i])+re
-              res = re.toPrecision(count)
-    }
-
-        }
-      }
-      return res
-    }
-
-
-    //面试题
-      // console.log(String(1).indexOf(".")+1);//0
-      console.log(sum(1,2,3,4,5) );//15
-      console.log(sum(5,null,-5)) //0
-      console.log(sum('1.0',1,true,1,false,1,'A',1,'B',1,'C',1,'D',1,'E',1,'F',1)) //10
-      console.log(sum(0.1,0.2)) //0.3
+    // function sum() {
+    //     var res = 0;
+    //     var re = 0
+    //   for (var i = 0; i < arguments.length; i++) {
+    //     if (typeof (arguments[i])== 'number'||typeof(arguments[i]) == 'boolean') {
+    //       var y = String(arguments[i]).indexOf(".")+1;//获取小数点的位置
+    //       if (y==0) {
+    //         //整数
+    //         res = Number(arguments[i])+res
+    //       }else {
+    //         //小数
+    //         var count = String(arguments[i]).length - y;//获取小数点后的个数
+    //         // console.log(count);
+    //         var  re= Number(arguments[i])+re
+    //           res = re.toPrecision(count)
+    // }
+    //
+    //     }
+    //   }
+    //   return res
+    // }
+    //
+    //
+    // //面试题
+    //   // console.log(String(1).indexOf(".")+1);//0
+    //   console.log(sum(1,2,3,4,5) );//15
+    //   console.log(sum(5,null,-5)) //0
+    //   console.log(sum('1.0',1,true,1,false,1,'A',1,'B',1,'C',1,'D',1,'E',1,'F',1)) //10
+    //   console.log(sum(0.1,0.2)) //0.3
       // console.log((0.1 + 0.2).toPrecision(1) );
+
+
+//递归函数　　在函数内调用本身的函数
+
+// function a(n) {
+//   if (n>0) {
+//     return n*a(n-1)
+//
+//   }else {
+//     return 1;
+//   }
+// }
+// console.log(a(4)); //4!
+
+// function aa(n) {
+//   if (n==0) {
+//     return 0
+//   }
+//   if (n==1) {
+//     return 1
+//   }
+//   return aa(n-1)+aa(n-2)
+// }
+// console.log(aa(3));//2
+// console.log(aa(5));
+
+//递归抽奖
+  //  var arr = ["zhangsan","zhaosi","wangwu","sansn"];
+  //   var btn = document.getElementById('btn');
+  //   function getName() {
+  //     var num = Math.floor(Math.random()*arr.length)
+  //     if (arr[num]==1) {
+  //       getName()
+  //     } else {
+  //       console.log(arr[num]);
+  //       arr[num] = 1
+  //     }
+  //   }
+  //   var num1 = arr.length
+  //   btn.addEventListener('click',function () {
+  //     num1--;
+  //     if (num1 < 0) {
+  //       console.log('抽奖结束');
+  //     }else {
+  //       getName()
+   //
+  //     }
+  //   })
+
+  //闭包
+  //优点：一个是可以
+  //缺点：用完需要释放　
+    function fun(x) {
+      var n = 1;
+      return function a(y) {
+        console.log(n+x+y);
+      }
+    }
+    var b = fun(4) // 4+8+1 与x的值无关　
+    b(8)
   </script>
 </body>
 </html>

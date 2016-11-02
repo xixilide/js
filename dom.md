@@ -47,11 +47,10 @@ for(var i = 0 ;i < oA.length;i++){
     G("pic").style.marginLeft = marginL;
     event.preventDefault();
     for(var j =0;j<oA.length;j++){
-<<<<<<< HEAD
 
 =======
-      
->>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
+
+
       //  oA[j].style.backgroundColor = "white"
       //  oA[j].style.color = "black"
       oA[j].className = oA[j].cla;

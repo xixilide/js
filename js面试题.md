@@ -10,7 +10,7 @@
 　　 = function(){
 =======
 Array.prototype.unique3 = function(){
->>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
+
  var res = [];
  var json = {};
  for(var i = 0; i < this.length; i++){
@@ -122,7 +122,7 @@ exampleFunc(); // global, false
 因为函数体需要 this 值获取 x 属性的值，那么接下来我们考虑改函数时调用时的上下文作用域以及背后的具体流程。
 =======
 =======
->>>>>>> 787e3276ec77d47710b7d44d65029a93cfc7d6d4
+
 ### 5.编程题：实现随机选取10–100之间的10个数字，存入一个数组，并排序。
 ```js
 var arr=[];
